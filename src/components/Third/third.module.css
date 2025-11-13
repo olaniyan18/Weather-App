@@ -1,0 +1,116 @@
+/** @format */
+
+.third {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.container1 {
+  background-image: url("../../assets/images/bg-today-large.svg");
+  width: 800px;
+  height: 286px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.container1 div {
+  padding: 0 30px;
+  display: flex;
+  flex-direction: column;
+  align-items: baseline;
+  gap: 10px;
+}
+
+.container1 div span {
+  font-family: var(--font-dm);
+  color: var(--color-neu0);
+  font-size: 30px;
+  font-weight: 600;
+}
+
+.container1 div p {
+  margin: 0;
+  font-family: var(--font-dm);
+  color: var(--color-neu2);
+  font-weight: 500;
+}
+
+.container1 > span {
+  display: flex;
+  align-items: center;
+  justify-content: end;
+  padding: 0 30px;
+  color: var(--color-neu0);
+  font-size: 100px;
+  gap: 20px;
+  font-weight: 500;
+  font-style: italic;
+  font-family: var(--font-gro);
+}
+
+.container1 > span img {
+  width: 150px;
+}
+
+.container2 {
+  display: grid;
+  align-items: center;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 24px;
+  width: -webkit-fill-available;
+}
+
+.container2 div {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  color: var(--color-neu0);
+  font-family: var(--font-dm);
+  background-color: var(--color-neu6);
+  padding: 16px 75px 16px 16px;
+  border-radius: 16px;
+  border: 1px solid var(--color-neu4);
+}
+
+.container2 div span {
+  font-size: 16px;
+  color: var(--color-neu2);
+}
+
+.container2 div p {
+  margin: 0;
+  font-size: 25px;
+  font-weight: 400;
+}
+
+@media only screen and (max-width: 1000px) {
+  .container1 {
+    background-image: url("../../assets/images/bg-today-small.svg");
+    width: 343px;
+    flex-direction: column;
+  }
+
+  .third {
+    align-items: center;
+  }
+
+  .container1 div {
+    margin-top: 30px;
+    align-items: center;
+  }
+  .container1 > span {
+    padding: 0;
+    font-size: 70px;
+    justify-content: space-between;
+  }
+
+  .container2 div p {
+    font-size: 20px;
+  }
+
+  .container2 {
+    gap: 16px;
+  }
+}

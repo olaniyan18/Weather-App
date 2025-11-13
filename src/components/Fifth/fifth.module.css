@@ -1,0 +1,93 @@
+/** @format */
+
+.fifth {
+  background-color: var(--color-neu6);
+  border-radius: 16px;
+  padding: 20px;
+  font-family: var(--font-dm);
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  height: fit-content;
+}
+
+.fore {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: relative;
+}
+
+.fore > span {
+  color: var(--color-neu0);
+  font-weight: 600;
+  font-size: 16px;
+}
+
+.day {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  border-radius: 8px;
+  padding: 8px 16px;
+  font-weight: 500;
+  background-color: var(--color-neu5);
+  color: var(--color-neu0);
+  position: relative;
+  cursor: pointer;
+}
+
+.dropdown {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  top: 100%;
+  right: 0;
+  background-color: var(--color-neu6);
+  border: 1px solid var(--color-neu4);
+  padding: 8px;
+  border-radius: 8px;
+  z-index: 1000;
+  width: 150px;
+  margin-top: 5px;
+}
+
+.span {
+  color: var(--color-neu0);
+  padding: 8px;
+  cursor: pointer;
+}
+
+.span:hover {
+  background-color: var(--color-neu5);
+  cursor: pointer;
+  border-radius: 6px;
+}
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.container2 {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: var(--color-neu5);
+  border: 1px solid var(--color-neu4);
+  color: var(--color-neu0);
+  border-radius: 8px;
+  padding: 0 10px;
+  text-transform: uppercase;
+}
+
+.container2 img {
+  width: 50px;
+}
+
+.container2 div {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
