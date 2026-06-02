@@ -1,6 +1,6 @@
 /** @format */
 
-import React, { useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import styles from "./first.module.css";
 import logo from "../../assets/images/logo.svg";
 import settings from "../../assets/images/icon-units.svg";
@@ -13,6 +13,18 @@ export default function First() {
   const [activeWind, setActiveWind] = useState("K");
 
   const [activePrep, setActivePrep] = useState("MM");
+  const listRef = useRef(null);
+
+  useEffect(() => {
+    function handleClickOutside(event) {
+      if (listRef.current && !listRef.current.contains(event.target)) {
+        setList(false);
+      }
+    }
+
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, []);
 
   function handleDropdown() {
     setList((prev) => !prev);
@@ -20,7 +32,7 @@ export default function First() {
   return (
     <div className={styles.first}>
       <img src={logo} alt='' />
-      <div className={styles.unit}>
+      <div className={styles.unit} ref={listRef}>
         <div onClick={handleDropdown} className={styles.unit2}>
           <img src={settings} alt='' />
           <span>Units</span>

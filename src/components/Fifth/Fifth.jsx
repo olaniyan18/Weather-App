@@ -1,6 +1,6 @@
 /** @format */
 
-import React, { useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import styles from "./fifth.module.css";
 import arrow from "../../assets/images/icon-dropdown.svg";
 
@@ -9,7 +9,7 @@ import sunny from "../../assets/images/icon-sunny.webp";
 import snow from "../../assets/images/icon-snow.webp";
 import fog from "../../assets/images/icon-fog.webp";
 import cloud from "../../assets/images/icon-partly-cloudy.webp";
-export default function Fifth() {
+export default function Fifth({ loading }) {
   const [selectDay, setSelectDay] = useState("");
   const [dropdown, setDropdown] = useState(false);
   const day = [
@@ -21,6 +21,19 @@ export default function Fifth() {
     "Saturday",
     "Sunday",
   ];
+
+  const inputRef = useRef(null);
+
+  useEffect(() => {
+    function handleClickOutside(event) {
+      if (inputRef.current && !inputRef.current.contains(event.target)) {
+        setDropdown(false);
+      }
+    }
+
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, []);
 
   const time = [
     { time: "3 pm", img: overcast, deg: "20°" },
@@ -44,14 +57,13 @@ export default function Fifth() {
 
   return (
     <div className={styles.fifth}>
-      <div className={styles.fore}>
+      <div className={styles.fore} ref={inputRef}>
         <span>Hourly forecast</span>
         <div onClick={handleDay} className={styles.day}>
-          <span>{selectDay || "Monday"}</span>
+          <span>{selectDay || "-"}</span>
           <img src={arrow} alt='' />
         </div>
-
-        {dropdown && (
+        {!loading && dropdown && (
           <div className={styles.dropdown}>
             {day.map((data, index) => (
               <span
@@ -69,11 +81,17 @@ export default function Fifth() {
         {" "}
         {time.map((data, index) => (
           <div className={styles.container2}>
-            <div key={index}>
-              <img src={data.img} alt='' />
-              <span>{data.time}</span>
-            </div>
-            <span>{data.deg}</span>
+            {loading ? (
+              <div className={styles.loading}></div>
+            ) : (
+              <>
+                <div key={index}>
+                  <img src={data.img} alt='' />
+                  <span>{data.time}</span>
+                </div>
+                <span>{data.deg}</span>
+              </>
+            )}
           </div>
         ))}
       </div>

@@ -9,7 +9,7 @@ import snow from "../../assets/images/icon-snow.webp";
 import fog from "../../assets/images/icon-fog.webp";
 import cloud from "../../assets/images/icon-partly-cloudy.webp";
 import drizzle from "../../assets/images/icon-drizzle.webp";
-export default function Fourth() {
+export default function Fourth({ loading }) {
   const list = [
     { day: "Tue", img: img, deg1: "20°", deg2: "14°" },
     { day: "Wed", img: drizzle, deg1: "20°", deg2: "14°" },
@@ -26,12 +26,18 @@ export default function Fourth() {
       <div className={styles.container1}>
         {list.map((data, index) => (
           <div className={styles.container2} key={index}>
-            <span>{data.day}</span>
-            <img src={data.img} alt='' />
-            <div>
-              <span>{data.deg1}</span>
-              <p>{data.deg2}</p>
-            </div>
+            {loading ? (
+              <div className={styles.loading}></div>
+            ) : (
+              <>
+                <span>{data.day}</span>
+                <img src={data.img} alt='' />
+                <div>
+                  <span>{data.deg1}</span>
+                  <p>{data.deg2}</p>
+                </div>
+              </>
+            )}
           </div>
         ))}
       </div>

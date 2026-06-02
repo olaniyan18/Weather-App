@@ -1,19 +1,44 @@
 /** @format */
 
-import React, { useState } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import styles from "./second.module.css";
 import search from "../../assets/images/icon-search.svg";
+import axios from "axios";
+import CircularProgress from "@mui/material/CircularProgress";
+import Box from "@mui/material/Box";
 
-export default function Second() {
-  const [place, setPlace] = useState("");
-
-  function Search() {
-    alert(`hello,${place}`);
-    setPlace("");
-  }
+export default function Second({ place, setPlace, Search, loading }) {
   const [dropdown, setDropdown] = useState(false);
+  const inputRef = useRef(null);
 
-  const options = ["Lagos", "Osun", "Ekiti", "Abuja", "Kano"];
+  const [saveCountry, setSaveCountry] = useState([]);
+
+  //   const options = ["Lagos", "Osun", "Ekiti", "Abuja", "Kano"];
+
+  // Close dropdown when clicking outside
+  useEffect(() => {
+    function handleClickOutside(event) {
+      if (inputRef.current && !inputRef.current.contains(event.target)) {
+        setDropdown(false);
+      }
+    }
+
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, []);
+
+  useEffect(() => {
+    axios
+      .get("https://countriesnow.space/api/v0.1/countries/states")
+      .then((res) => {
+        // console.log(res.data);
+        setSaveCountry(res.data.data);
+      });
+  }, []);
+
+  const country = saveCountry.flatMap((country) =>
+    country.states.map((s) => `${s.name}, ${country.name}`),
+  );
 
   function handleSelect(option) {
     setPlace(option);
@@ -24,7 +49,7 @@ export default function Second() {
       <h3>How's the sky looking today?</h3>
 
       <div className={styles.div}>
-        <div>
+        <div ref={inputRef}>
           <img src={search} alt='' />
 
           <input
@@ -41,9 +66,9 @@ export default function Second() {
 
           {dropdown && (
             <div className={styles.option}>
-              {options
+              {country
                 .filter((option) =>
-                  option.toLowerCase().includes(place.toLowerCase())
+                  option.toLowerCase().includes(place.toLowerCase()),
                 )
                 .map((data, index) => (
                   <span key={index} onClick={() => handleSelect(data)}>
@@ -54,9 +79,15 @@ export default function Second() {
           )}
         </div>
 
-        <button type='button' onClick={Search}>
-          Search
-        </button>
+        {loading ? (
+          <Box sx={{ display: "flex" }}>
+            <CircularProgress size={20} sx={{ color: "white" }} />
+          </Box>
+        ) : (
+          <button type='button' onClick={Search}>
+            Search
+          </button>
+        )}
       </div>
     </div>
   );

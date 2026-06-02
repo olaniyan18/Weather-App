@@ -11,6 +11,10 @@
   height: fit-content;
 }
 
+.loading {
+  height: 47px;
+}
+
 .fore {
   display: flex;
   align-items: center;

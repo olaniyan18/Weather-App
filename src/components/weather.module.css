@@ -7,9 +7,77 @@
   gap: 24px;
 }
 
+.error {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 24px;
+  color: var(--color-neu0);
+  margin-top: 20px;
+}
+
+.error > img {
+  width: 50px;
+}
+
+.error h3 {
+  margin: 0;
+  font-family: var(--font-gro);
+  font-size: 40px;
+}
+
+.error span {
+  color: var(--color-neu2);
+  width: 33%;
+  text-align: center;
+  font-family: var(--font-dm);
+}
+
+.error button {
+  border: 0;
+  font-size: 16px;
+  font-family: var(--font-dm);
+  color: var(--color-neu0);
+  background-color: var(--color-neu5);
+  padding: 8px 16px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.result {
+  color: var(--color-neu0);
+  font-family: var(--font-gro);
+  font-size: 25px;
+  text-align: center;
+  font-weight: 600;
+  display: flex;
+  width: -webkit-fill-available;
+  justify-content: center;
+  margin-top: 50px;
+}
+
 @media only screen and (max-width: 1000px) {
   .weather {
     grid-template-columns: 1fr;
     padding: 30px 10px;
+  }
+
+  .error {
+    margin-top: 40px;
+  }
+
+  .error > img {
+    width: 35px;
+  }
+
+  .error h3 {
+    font-size: 20px;
+  }
+
+  .error span {
+    width: 73%;
   }
 }
